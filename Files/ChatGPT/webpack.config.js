@@ -1,6 +1,5 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/main.ts',
@@ -10,7 +9,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),
       '@environments': path.resolve(__dirname, 'src/environments'),
@@ -23,7 +21,7 @@ module.exports = {
         use: [
           {
             loader: 'ts-loader',
-            options: {configFile: 'tsconfig.json'},
+            options: { configFile: 'tsconfig.json' },
           },
           'angular2-template-loader',
         ],
