@@ -2,8 +2,8 @@
   "name": "angular-registration-login-example",
   "version": "0.0.0",
   "scripts": {
-    "start": "webpack serve --config webpack.config.js --open",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open"
   },
   "private": true,
   "dependencies": {
