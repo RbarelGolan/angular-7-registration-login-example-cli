@@ -1,13 +1,13 @@
 {
   "name": "angular-registration-login-example",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:RbarelGolan/angular-7-registration-login-example-cli.git"
-  },
+  "version": "0.0.0",
   "scripts": {
-    "build": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -26,14 +26,13 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.3",
+    "@angular/cli": "~7.0.3",
     "@angular/compiler-cli": "^7.2.6",
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^10.17.60",
-    "angular2-template-loader": "^0.6.2",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
-    "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
@@ -42,13 +41,8 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
-    "raw-loader": "^0.5.1",
-    "ts-loader": "^5.4.5",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.9.10",
-    "webpack": "^4.47.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
+    "typescript": "~3.1.1"
   }
 }
