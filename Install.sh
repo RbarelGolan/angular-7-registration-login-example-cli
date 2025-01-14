@@ -137,11 +137,17 @@ npm uninstall @angular/http
 
 npm install --save-dev "@types/node@~10.12.0"
 npm install --save-dev "angular2-template-loader@~0.6.2"
-npm install --save-dev "webpack-dev-server@~3.1.10"
 npm install --save-dev "html-webpack-plugin@~3.2.0"
 
 npm install --save-dev "raw-loader@~0.5.1"
 npm install --save-dev "ts-loader@~5.2.2"
 npm install --save-dev "typescript@~3.1.3"
+
 npm install --save-dev "webpack@4.23.1"
 npm install --save-dev "webpack-cli@~3.1.2"
+npm install --save-dev "webpack-dev-server@~3.1.10"
+
+
+npm install --save-dev "angular2-template-loader@~0.6.2" "html-webpack-plugin@~3.2.0"
+npm install --save-dev "webpack@4.23.1" "webpack-cli@~3.1.2" "webpack-dev-server@~3.1.10"
+
