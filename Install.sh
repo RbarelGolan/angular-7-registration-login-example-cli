@@ -62,54 +62,24 @@ DEPENDENCIES+=' zone.js@~0.8.26'
 DEV_DEPENDENCIES=''
 
 #DEV_DEPENDENCIES+=' codelyzer@~4.5.0'
-#DEV_DEPENDENCIES+=' protractor@~5.4.0'
 #DEV_DEPENDENCIES+=' @angular/compiler@7.2.16'
-#DEV_DEPENDENCIES+=' npm install --save-dev'
-#"@angular/compiler": "^7.0.4",
-#"@types/jasminewd2": "^2.0.13",
-#"@types/node": "^8.9.5",
-#"angular2-template-loader": "^0.6.2",
-#"codelyzer": "^4.5.0",
-#"html-webpack-plugin": "^3.2.0",
-#"jasmine-core": "^2.99.1",
-#"jasmine-spec-reporter": "^4.2.1",
-#"karma": "^3.0.0",
-#"karma-chrome-launcher": "^2.2.0",
-#"karma-coverage-istanbul-reporter": "^2.0.6",
-#"karma-jasmine": "^1.1.2",
-#"karma-jasmine-html-reporter": "^0.2.2",
-#"protractor": "^5.4.4",
-#"raw-loader": "^0.5.1",
-#"ts-loader": "^5.4.5",
-#"ts-node": "^7.0.1",
-#"tslint": "^5.11.0",
-#"typescript": "^3.1.8",
-#"webpack": "^4.23.1",
-#"webpack-cli": "^3.1.2",
-#"webpack-dev-server": "^3.1.14"
-DEV_DEPENDENCIES+=' webpack@~4.23.1'
+DEV_DEPENDENCIES+=' @babel/core'
+DEV_DEPENDENCIES+=' @babel/preset-env'
+DEV_DEPENDENCIES+=' @babel/preset-typescript'
+DEV_DEPENDENCIES+=' @types/jasmine@~2.8.8'
+DEV_DEPENDENCIES+=' @types/node@~8.9.4'
+DEV_DEPENDENCIES+=' angular2-template-loader@~0.6.2'
+DEV_DEPENDENCIES+=' babel-loader'
+DEV_DEPENDENCIES+=' clean-webpack-plugin'
+DEV_DEPENDENCIES+=' html-webpack-plugin@~3.2.0'
+DEV_DEPENDENCIES+=' protractor@~5.4.0'
+DEV_DEPENDENCIES+=' raw-loader@~0.5.1'
+DEV_DEPENDENCIES+=' ts-loader@~5.4.5'
+DEV_DEPENDENCIES+=' ts-node@~7.0.0'
+DEV_DEPENDENCIES+=' typescript@~3.1.1'
 DEV_DEPENDENCIES+=' webpack-cli@~3.1.2'
 DEV_DEPENDENCIES+=' webpack-dev-server@~3.1.10'
-DEV_DEPENDENCIES+=' html-webpack-plugin@~3.2.0'
-DEV_DEPENDENCIES+=' ts-loader@~5.4.5'
-DEV_DEPENDENCIES+=' raw-loader@~0.5.1'
-DEV_DEPENDENCIES+=' angular2-template-loader@~0.6.2'
-DEV_DEPENDENCIES+=' typescript@~3.1.1'
-DEV_DEPENDENCIES+=' @types/node@~8.9.4'
-DEV_DEPENDENCIES+=' protractor@~5.4.0'
-DEV_DEPENDENCIES+=' ts-node@~7.0.0'
-DEV_DEPENDENCIES+=' @types/jasmine@~2.8.8'
-
-#DEV_DEPENDENCIES+=' @types/jasminewd2@~2.0.3'
-#DEV_DEPENDENCIES+=' codelyzer@~4.5.0'
-#DEV_DEPENDENCIES+=' jasmine-core@~2.99.1'
-#DEV_DEPENDENCIES+=' jasmine-spec-reporter@~4.2.1'
-#DEV_DEPENDENCIES+=' karma@~3.0.0'
-#DEV_DEPENDENCIES+=' karma-chrome-launcher@~2.2.0'
-#DEV_DEPENDENCIES+=' karma-coverage-istanbul-reporter@~2.0.1'
-#DEV_DEPENDENCIES+=' karma-jasmine@~1.1.2'
-#DEV_DEPENDENCIES+=' karma-jasmine-html-reporter@~0.2.2'
-#DEV_DEPENDENCIES+=' tslint@~5.11.0'
+DEV_DEPENDENCIES+=' webpack@~4.23.1'
 
 if [ -n "${DEPENDENCIES}" ]; then
 	INSTALL_COMMAND="npm install --save ${DEPENDENCIES}"
@@ -132,7 +102,7 @@ if [ -n "${DEV_DEPENDENCIES}" ]; then
 fi
 
 UNINSTALL=''
-#UNINSTALL+=' @angular/cli'
+UNINSTALL+=' @angular/cli'
 #UNINSTALL+=' @angular-devkit/build-angular'
 #UNINSTALL+=' @angular/language-service'
 #UNINSTALL+=' @angular/compiler-cli'
@@ -164,3 +134,14 @@ npm install --save-dev protractor@~5.4.0
 npm install --save-dev @types/jasmine@~2.8.8
 npm uninstall @angular/animations
 npm uninstall @angular/http
+
+npm install --save-dev "@types/node@~10.12.0"
+npm install --save-dev "angular2-template-loader@~0.6.2"
+npm install --save-dev "webpack-dev-server@~3.1.10"
+npm install --save-dev "html-webpack-plugin@~3.2.0"
+
+npm install --save-dev "raw-loader@~0.5.1"
+npm install --save-dev "ts-loader@~5.2.2"
+npm install --save-dev "typescript@~3.1.3"
+npm install --save-dev "webpack@4.23.1"
+npm install --save-dev "webpack-cli@~3.1.2"
