@@ -6,9 +6,14 @@
     "url": "git@github.com:RbarelGolan/angular-7-registration-login-example-cli.git"
   },
   "scripts": {
-    "build": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
+  "private": true,
   "dependencies": {
     "@angular/animations": "~7.0.0",
     "@angular/common": "~7.0.0",
