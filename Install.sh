@@ -45,35 +45,35 @@ case "$*" in
 esac
 
 DEPENDENCIES=''
-DEPENDENCIES+=' @angular/compiler@~7.0.4'
-DEPENDENCIES+=' @angular/animations@~7.0.0'
-DEPENDENCIES+=' @angular/common@~7.0.0'
-DEPENDENCIES+=' @angular/compiler@~7.0.0'
-DEPENDENCIES+=' @angular/core@~7.0.0'
-DEPENDENCIES+=' @angular/forms@~7.0.0'
-DEPENDENCIES+=' @angular/http@~7.0.0'
-DEPENDENCIES+=' @angular/platform-browser@~7.0.0'
-DEPENDENCIES+=' @angular/platform-browser-dynamic@~7.0.0'
-DEPENDENCIES+=' @angular/router@~7.0.0'
-DEPENDENCIES+=' core-js@~2.5.4'
-DEPENDENCIES+=' rxjs@~6.3.3'
-DEPENDENCIES+=' zone.js@~0.8.26'
+#DEPENDENCIES+=' @angular/compiler@~7.0.4'
+#DEPENDENCIES+=' @angular/animations@~7.0.0'
+#DEPENDENCIES+=' @angular/common@~7.0.0'
+#DEPENDENCIES+=' @angular/compiler@~7.0.0'
+#DEPENDENCIES+=' @angular/core@~7.0.0'
+#DEPENDENCIES+=' @angular/forms@~7.0.0'
+#DEPENDENCIES+=' @angular/http@~7.0.0'
+#DEPENDENCIES+=' @angular/platform-browser@~7.0.0'
+#DEPENDENCIES+=' @angular/platform-browser-dynamic@~7.0.0'
+#DEPENDENCIES+=' @angular/router@~7.0.0'
+#DEPENDENCIES+=' core-js@~2.5.4'
+#DEPENDENCIES+=' rxjs@~6.3.3'
+#DEPENDENCIES+=' zone.js@~0.8.26'
 
 DEV_DEPENDENCIES=''
 
 #DEV_DEPENDENCIES+=' codelyzer@~4.5.0'
 #DEV_DEPENDENCIES+=' @angular/compiler@7.2.16'
-DEV_DEPENDENCIES+=' @babel/core'
-DEV_DEPENDENCIES+=' @babel/preset-env'
-DEV_DEPENDENCIES+=' @babel/preset-typescript'
-DEV_DEPENDENCIES+=' @types/jasmine@~2.8.8'
+#DEV_DEPENDENCIES+=' @babel/core'
+#DEV_DEPENDENCIES+=' @babel/preset-env'
+#DEV_DEPENDENCIES+=' @babel/preset-typescript'
+#DEV_DEPENDENCIES+=' @types/jasmine@~2.8.8'
 DEV_DEPENDENCIES+=' @types/node@~8.9.4'
 DEV_DEPENDENCIES+=' angular2-template-loader@~0.6.2'
-DEV_DEPENDENCIES+=' babel-loader'
-DEV_DEPENDENCIES+=' clean-webpack-plugin'
+#DEV_DEPENDENCIES+=' babel-loader'
+#DEV_DEPENDENCIES+=' clean-webpack-plugin'
 DEV_DEPENDENCIES+=' html-webpack-plugin@~3.2.0'
-DEV_DEPENDENCIES+=' protractor@~5.4.0'
-DEV_DEPENDENCIES+=' raw-loader@~0.5.1'
+#DEV_DEPENDENCIES+=' protractor@~5.4.0'
+#DEV_DEPENDENCIES+=' raw-loader@~0.5.1'
 DEV_DEPENDENCIES+=' ts-loader@~5.4.5'
 DEV_DEPENDENCIES+=' ts-node@~7.0.0'
 DEV_DEPENDENCIES+=' typescript@~3.1.1'
@@ -103,9 +103,9 @@ fi
 
 UNINSTALL=''
 UNINSTALL+=' @angular/cli'
-#UNINSTALL+=' @angular-devkit/build-angular'
-#UNINSTALL+=' @angular/language-service'
-#UNINSTALL+=' @angular/compiler-cli'
+UNINSTALL+=' @angular-devkit/build-angular'
+UNINSTALL+=' @angular/language-service'
+UNINSTALL+=' @angular/compiler-cli'
 
 if [ -n "${UNINSTALL}" ]; then
 	UNINSTALL_COMMAND="npm uninstall ${UNINSTALL}"
@@ -125,6 +125,10 @@ if [[ ${INSTALL,,} =~ true|yes|1 ]]; then
 fi
 if [[ ${START,,} =~ true|yes|1 ]]; then
 	npm start
+fi
+
+if [ "${BASH_SOURCE_ORIGIN}" == "${BASH_SOURCE_REALPATH}" ]; then
+	cd "${ORIGIN_DIR}" || error "Couldn't cd to ${ORIGIN_DIR} (202501161739591, ${BASH_SOURCE[0]})" 1
 fi
 
 exit

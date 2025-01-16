@@ -1,8 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'development', // or 'production'
@@ -34,23 +31,14 @@ module.exports = {
       {
         test: /\.html$/,
         use: 'html-loader'
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new MiniCssExtractPlugin()
   ],
-  optimization: {
-    minimizer: [new TerserPlugin()]
-  },
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist')
