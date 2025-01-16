@@ -5,7 +5,7 @@ root = true
 charset = utf-8
 indent_style = space
 indent_size = 2
-insert_final_newline = true
+insert_final_newline = false
 trim_trailing_whitespace = true
 
 [*.md]
@@ -18,3 +18,6 @@ ij_shell_tab_width = 4
 ij_shell_indent_style = tab
 ij_shell_switch_cases_indented = true
 ij_shell_keep_column_alignment_padding = true
+
+[*.ts]
+insert_final_newline = false
