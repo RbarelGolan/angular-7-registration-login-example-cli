@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -30,20 +31,25 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: 'html-loader'
+        use: 'html-loader',
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      /(.+)?angular(\\|\/)core(.+)?/,
+      path.resolve(__dirname, 'src'),
+      {}
+    ),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    }),
+    })
   ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist')
-    },
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 4201
+    port: 4201,
+    historyApiFallback: true
   }
-};
+}

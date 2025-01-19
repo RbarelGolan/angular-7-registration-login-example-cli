@@ -1,4 +1,0 @@
-
-
-for "@Component({ selector: 'app', templateUrl: 'app.component.html' })" TSLint says it should should be kebak case:
-TSLint: The selector of the component "AppComponent" should be named kebab-case and include dash (https://angular.io/styleguide#style-05-02) (component-selector)

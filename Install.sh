@@ -71,15 +71,16 @@ DEV_DEPENDENCIES+=' @types/node@~8.9.4'
 DEV_DEPENDENCIES+=' angular2-template-loader@~0.6.2'
 #DEV_DEPENDENCIES+=' babel-loader'
 #DEV_DEPENDENCIES+=' clean-webpack-plugin'
-DEV_DEPENDENCIES+=' html-webpack-plugin@~3.2.0'
+DEV_DEPENDENCIES+=' html-webpack-plugin@~4.5.2'
+DEV_DEPENDENCIES+=' html-loader@~0.5.5'
 #DEV_DEPENDENCIES+=' protractor@~5.4.0'
 #DEV_DEPENDENCIES+=' raw-loader@~0.5.1'
-DEV_DEPENDENCIES+=' ts-loader@~5.4.5'
+DEV_DEPENDENCIES+=' ts-loader@~5.2.2'
 DEV_DEPENDENCIES+=' ts-node@~7.0.0'
 DEV_DEPENDENCIES+=' typescript@~3.1.1'
+DEV_DEPENDENCIES+=' webpack@~4.23.1'
 DEV_DEPENDENCIES+=' webpack-cli@~3.1.2'
 DEV_DEPENDENCIES+=' webpack-dev-server@~3.1.10'
-DEV_DEPENDENCIES+=' webpack@~4.23.1'
 
 if [ -n "${DEPENDENCIES}" ]; then
 	INSTALL_COMMAND="npm install --save ${DEPENDENCIES}"
@@ -136,8 +137,13 @@ npm install --save-dev html-webpack-plugin@~3.2.0
 npm install --save-dev angular2-template-loader@~0.6.2
 npm install --save-dev protractor@~5.4.0
 npm install --save-dev @types/jasmine@~2.8.8
-npm uninstall @angular/animations
-npm uninstall @angular/http
+
+npm uninstall @angular/cli
+npm uninstall @angular-devkit/build-angular
+npm uninstall @angular/language-service
+npm uninstall @angular/compiler-cli
+
+npm uninstall @angular/cli @angular-devkit/build-angular @angular/language-service @angular/compiler-cli
 
 npm install --save-dev "@types/node@~10.12.0"
 npm install --save-dev "angular2-template-loader@~0.6.2"
@@ -151,7 +157,32 @@ npm install --save-dev "webpack@4.23.1"
 npm install --save-dev "webpack-cli@~3.1.2"
 npm install --save-dev "webpack-dev-server@~3.1.10"
 
-
 npm install --save-dev "angular2-template-loader@~0.6.2" "html-webpack-plugin@~3.2.0"
 npm install --save-dev "webpack@4.23.1" "webpack-cli@~3.1.2" "webpack-dev-server@~3.1.10"
 
+npm install --save-dev \
+angular2-template-loader@^0.6.2 \
+css-loader@^4.3.0 \
+html-loader@^0.5.5 \
+html-webpack-plugin@^4.5.2 \
+style-loader@^1.2.1 \
+ts-loader@^8.0.0 \
+typescript@~4.0.0 \
+webpack@^4.44.2 \
+webpack-cli@^3.3.12 \
+webpack-dev-server@^3.11.0
+
+npm install --save-dev \
+typescript@~4.0.0
+
+npm uninstall \
+@types/jasmine \
+@types/jasminewd2 \
+jasmine-core \
+jasmine-spec-reporter \
+protractor \
+karma \
+karma-chrome-launcher \
+karma-coverage-istanbul-reporter \
+karma-jasmine \
+karma-jasmine-html-reporter
