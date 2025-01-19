@@ -138,6 +138,8 @@ npm install --save-dev angular2-template-loader@~0.6.2
 npm install --save-dev protractor@~5.4.0
 npm install --save-dev @types/jasmine@~2.8.8
 
+npm uninstall @angular/animations @angular/http
+
 npm uninstall @angular/cli
 npm uninstall @angular-devkit/build-angular
 npm uninstall @angular/language-service
@@ -152,6 +154,7 @@ npm install --save-dev "html-webpack-plugin@~3.2.0"
 npm install --save-dev "raw-loader@~0.5.1"
 npm install --save-dev "ts-loader@~5.2.2"
 npm install --save-dev "typescript@~3.1.3"
+npm install --save-dev " html-loader@^0.5.5"
 
 npm install --save-dev "webpack@4.23.1"
 npm install --save-dev "webpack-cli@~3.1.2"
