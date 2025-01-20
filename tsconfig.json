@@ -23,6 +23,9 @@
       ],
       "@environments/*": [
         "src/environments/*"
+      ],
+      "yourAppName/Component": [
+        "src/app/your-component/your-component.component.ts"
       ]
     }
   }

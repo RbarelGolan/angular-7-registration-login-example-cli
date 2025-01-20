@@ -201,11 +201,4 @@ webpack-cli@^4.0.0 \
 npm install --save-dev \
 webpack-dev-server@^4.15.0
 
-
-  "html-loader": "^1.3.2"
-  "html-webpack-plugin": "^5.0.0",
-  "ts-loader": "^8.0.0",
-  "typescript": "~4.0.0",
-  "webpack": "^5.0.0",
-  "webpack-cli": "^4.0.0",
-  "webpack-dev-server": "^3.11.0",
+npm install @angular-architects/module-federation --save

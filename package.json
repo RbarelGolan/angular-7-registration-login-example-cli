@@ -10,6 +10,7 @@
     "start": "webpack-dev-server --mode development"
   },
   "dependencies": {
+    "@angular-architects/module-federation": "^19.0.1",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
     "@angular/core": "~7.0.0",
