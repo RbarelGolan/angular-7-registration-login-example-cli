@@ -15,11 +15,3 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-loadRemoteModule({
-  remoteEntry: 'http://localhost:4201/remoteEntry.js',
-  remoteName: 'Angular7MF',
-  exposedModule: './Component'
-}).then(m => {
-  platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
-});

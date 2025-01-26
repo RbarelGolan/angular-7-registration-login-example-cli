@@ -197,8 +197,8 @@ ts-loader@^8.0.0 \
 typescript@~4.0.0 \
 webpack@^5.0.0 \
 webpack-cli@^4.0.0 \
-
-npm install --save-dev \
 webpack-dev-server@^4.15.0
+
+#npm install --save-dev \
 
 npm install @angular-architects/module-federation --save
