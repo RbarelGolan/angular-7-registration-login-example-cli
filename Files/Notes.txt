@@ -101,4 +101,158 @@ import subprocess
 subprocess.run(['bash', '-c', 'source ~/.nvm/nvm.sh && nvm use ' + options.node], check=True)
 ```
 
+Q. A Remote React application is sharing components like this:
+ new ModuleFederationPlugin({
+      name: 'app1',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/App',
+        './Button': './src/Components/Button',
+        './Alert': './src/Components/Alert',
+        './Navbar': './src/Components/Navbar',
+        './CardList': './src/Components/CardList',
+      },
+      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+    })
+The remote App URL is http://10.162.21.16:3001/remoteEntry.js
+How can I import a remote component in an Angular 7 app using module federation?
+A. You can import the remote component in your Angular app like this:
+```
+import { Component, OnInit } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+import { NavbarComponent } from 'app1/Navbar';
+```
+Then, you can use the remote component in your Angular app like this:
+```
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Angular App</h1>
+    <app-navbar></app-navbar>
+  `,
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteEntry: 'http://
+```
+Q. There is no definition of app1/Navbar or the remote address in your reply.
+A. You can define the remote component in "webpack.config.js" of your Angular app like this:
+```
+module.exports = {
+  //...
+  plugins: [
+    new ModuleFederationPlugin({
+      remotes: {
+        app1: 'app1@http://
+```
+Then, you can use the remote component in your Angular app like this:
+```
+import { Component, OnInit } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Angular App</h1>
+    <app-navbar></app-navbar>
+  `,
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteName: 'app1',
+      exposedModule: './Navbar',
+    })
+      .then((m) => {
+        const Navbar = m['Navbar'];
+        this.customElements.define('app-navbar', Navbar);
+      })
+      .catch((err) => console.error('Error loading remote module', err));
+  }
+}
+```
+This will load the remote component Navbar from the React app and render it in the Angular app.
+Q. I am getting this error in the browser:
+Error loading remote module TypeError: container is undefined
+A. You need to add the following code to your Angular app's "main.ts" file to fix this error:
+```
+import { loadRemoteEntry } from '@angular-architects/module-federation';
+import { environment } from './environments/environment';
+
+Promise.all([
+  loadRemoteEntry(environment.remoteEntry),
+])
+  .catch((err) => console.error('Error loading remote entries', err))
+  .then(() => import('./bootstrap'))
+  .catch((err) => console.error(err));
+```
+This will load the remote entry before bootstrapping the Angular app.
+
+
+
+Q. I need a css loader for webpack 5 that can handle css modules. How can I configure this in my webpack.config.js file?
+A. You can configure the css loader for webpack 5 to handle css modules like this
+```
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+This configuration will enable css modules for your webpack 5 project.
+Q. Got error: Module not found: Error: Can't resolve 'style-loader'
+A. You need to install the style-loader package to resolve this error. You can install it using npm like this:
+```
+npm install style-loader --save-dev
+```
+Q. Got error: Module not found: Error: Can't resolve 'css-loader'
+A. You need to install the css-loader package to resolve this error. You can install it using npm like this:
+```
+npm install css-loader --save-dev
+```
+Q. Got Error: Uncaught Error: Expected 'styles' to be an array of strings.
+The Component:
+```typescript
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.css'],
+})
+export class ButtonComponent {
+  constructor() {
+    console.log('ButtonComponent created');
+  }
+}
+```
+A. You need to change the styleUrls property to an array of strings like this:
+```typescript
+styleUrls: ['./button.component.css'],
+```
+This will fix the error and load the css file for the component.
+In my exaple to you I use the follwoing code:
+```typescript
+styleUrls: ['./button.component.css'],
+```
+A. You need to change the styleUrls property to an array of strings like this:
+```typescript
+styleUrls: ['./button.component.css'],
+```
+
 
