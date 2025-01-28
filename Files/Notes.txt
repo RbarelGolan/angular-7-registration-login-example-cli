@@ -1,0 +1,104 @@
+Import components using module federation
+Q. I have a React app that uses module federation to expose components. I want to import these components in another an Angular 7 app (using webpack 5). How can I do this?
+The remote react app exposes a component Navbar like this:
+```
+ plugins: [
+    // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
+    new ModuleFederationPlugin({
+      name: 'app1',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/App',
+        './Button': './src/Components/Button',
+        './Alert': './src/Components/Alert',
+        './Navbar': './src/Components/Navbar',
+        './CardList': './src/Components/CardList',
+      },
+      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+    }),
+    ```
+The URL of the remote app is http://localhost:3001/remoteEntry.js
+A. You can import the remote component in your Angular app like this:
+```
+import { Component, OnInit } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+import { NavbarComponent } from 'app1/Navbar';
+```
+Then, you can use the remote component in your Angular app like this:
+```
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Angular App</h1>
+    <app-navbar></app-navbar>
+  `,
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteEntry: 'http://localhost:3001/remoteEntry.js',
+      remoteName: 'app1',
+      exposedModule: './Navbar',
+    })
+      .then((m) => {
+        const Navbar = m['Navbar'];
+        this.customElements.define('app-navbar', Navbar);
+      })
+      .catch((err) => console.error('Error loading remote module', err));
+  }
+}
+```
+This will load the remote component Navbar from the React app and render it in the Angular app.
+Q. Can I define the remote component in "webpack.config.js" of my angular app instead of importing it in the Angular component?
+A. Yes, you can define the remote component in "webpack.config.js" of your Angular app like this:
+```
+module.exports = {
+  //...
+  plugins: [
+    new ModuleFederationPlugin({
+      remotes: {
+        app1: 'app1@http://localhost:3001/remoteEntry.js',
+      },
+    }),
+  ],
+};
+```
+Then, you can use the remote component in your Angular app like this:
+```
+import { Component, OnInit } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Angular App</h1>
+    <app-navbar></app-navbar>
+  `,
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteName: 'app1',
+      exposedModule: './Navbar',
+    })
+      .then((m) => {
+        const Navbar = m['Navbar'];
+        this.customElements.define('app-navbar', Navbar);
+      })
+      .catch((err) => console.error('Error loading remote module', err));
+  }
+}
+```
+This will load the remote component Navbar from the React app and render it in the Angular app.
+Q. How can I pass props to the remote component in the Angular app?
+
+
+Q. In a python script, running command subprocess.run(['nvm', 'use', options.node]) does not work. How can I use nvm in a python script?
+A. You can use the subprocess module to run the nvm command in a python script like this:
+```
+import subprocess
+
+subprocess.run(['bash', '-c', 'source ~/.nvm/nvm.sh && nvm use ' + options.node], check=True)
+```
+
+
