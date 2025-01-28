@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const share = require('@angular-architects/module-federation/webpack').share;
 
 module.exports = {
   mode: 'development', // or 'production'
@@ -10,7 +9,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-
     uniqueName: "Angular7MF",
     publicPath: "auto",
   },
@@ -41,6 +39,18 @@ module.exports = {
         test: /\.html$/,
         use: 'html-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
       }
     ]
   },
@@ -54,18 +64,12 @@ module.exports = {
       template: './src/index.html'
     }),
     new ModuleFederationPlugin({
-      name: "Angular7MF",
+      name: "ButtonApp",
       filename: "remoteEntry.js",
+      type: "module",
       exposes: {
-        // './Component': './src/app/app.component.ts',
-        './Component': './src/app/login/login.component.ts',
-      },
-      shared: share({
-        "@angular/core": {singleton: true, strictVersion: true, eager: true, requiredVersion: 'auto'},
-        "@angular/common": {singleton: true, strictVersion: true, eager: true, requiredVersion: 'auto'},
-        "@angular/router": {singleton: true, strictVersion: true, eager: true, requiredVersion: 'auto'},
-        // other shared libraries
-      }),
+        './ButtonComponent': './src/app/button/button.component.ts',
+      }
     }),
   ],
   devServer: {
@@ -73,7 +77,7 @@ module.exports = {
       directory: path.join(__dirname, 'dist')
     },
     compress: true,
-    port: 4201,
+    port: 4202,
     historyApiFallback: true
   }
 }
