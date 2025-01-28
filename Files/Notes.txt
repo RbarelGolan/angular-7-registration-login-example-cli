@@ -256,3 +256,85 @@ styleUrls: ['./button.component.css'],
 ```
 
 
+Q. How do I prepare a custom elemnt for a component that will be loaded remotely without generating the element after loading the component?
+A. You can define a custom element for a component that will be loaded remotely without generating the element after loading the component like this:
+```
+import { Component, OnInit } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Angular App</h1>
+    <app-navbar></app-navbar>
+  `,
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteEntry: 'http://localhost:3001/remoteEntry.js',
+      remoteName: 'app1',
+      exposedModule: './Navbar',
+    })
+      .then((m) => {
+        const Navbar = m['Navbar'];
+        this.customElements.define('app-navbar', Navbar);
+      })
+      .catch((err) => console.error('Error loading remote module', err));
+  }
+}
+```
+Q. I want it to be part of my template ('app-button'):
+```html
+<!-- credits -->
+<div class="text-center">
+  <app-button></app-button>
+  <p>
+    <a href="https://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial"
+       target="_top">Angular 7 - User Registration and Login Example & Tutorial</a>
+  </p>
+  <p>
+    <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+  </p>
+</div>
+```
+The template file is src/app/app.component.html
+I want it to be part of my template ('app-button'):
+The component here is:
+```typescript
+@Component({selector: 'app', templateUrl: 'app.component.html'})
+```
+I want to be able to nest it in the template file.
+A. You can define a custom element for a component that will be loaded remotely and nest it in the template file like this:
+```typescript
+import { Component, OnInit } from '@angular/core';
+
+
+@Component({
+  selector: 'app',
+  templateUrl: 'app.component.html',
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    loadRemoteModule({
+      remoteEntry: 'http://localhost:3001/remoteEntry.js',
+      remoteName: 'app1',
+      exposedModule: './Button',
+    })
+      .then((m) => {
+        const Button = m['Button'];
+        this.customElements.define('app-button', Button);
+      })
+      .catch((err) => console.error('Error loading remote module', err));
+  }
+}
+```
+Q. Before the remote component even loads I am getting:
+Error: Template parse errors:
+'app-button' is not a known element:
+I need the app-button elemnt to exist and receive the component when it loads
+A. You can define a custom element for a component that will be loaded remotely and nest it in the template file like this:
+```typescript
+import { Component, OnInit } from '@angular/core';
+
+

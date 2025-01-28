@@ -12,7 +12,7 @@ arg_parser = argparse.ArgumentParser(description='Start the application')
 arg_parser.add_argument('--verbose', '-v', action='store_true', help='Enable verbose mode')
 arg_parser.add_argument('--install', '-i', action='store_true', help='Install Node Modules')
 arg_parser.add_argument('--reset', action='store_true', help='Reset the terminal')
-arg_parser.add_argument('--mode', type=str, help='Specify the mode to start the application in')
+arg_parser.add_argument('--mode', type=str, help='Specify the mode to start the application in', default='development')
 arg_parser.add_argument('--node', required=False, type=str, help='Specify the node version to use', default='')
 
 
